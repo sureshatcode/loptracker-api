@@ -1,2 +1,2 @@
-# loptracker
-Loss Of Pay Tracker
+# loptracker-api
+Loss Of Pay Tracker Api
