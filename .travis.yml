@@ -2,6 +2,8 @@ language: java
 jdk: oraclejdk8
 sudo: enabled
 dist: trusty
+before_install:
+ - chmod +x gradlew
 script: 
   - ./gradlew check
   - ./gradlew assemble
