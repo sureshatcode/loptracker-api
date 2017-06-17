@@ -1,7 +1,6 @@
 #!/bin/bash
 source "$1"
 base_dir=$(pwd)
-tomcat_location="/var/lib/tomcat8/bin"
 tomcat_app_location="/var/lib/tomcat8/webapps"
 war_location="$base_dir//loptracker.war"
 time_stamp=$(date +%Y-%m-%d-%T)
@@ -35,7 +34,7 @@ fi
 
 # This function is used to deploy the loptracker.war
 deployLopTracker(){
-sudo sh "$tomcat_location"/shutdown.sh && sleep 5
+sudo service tomcat8 stop && sleep 5
 if [ "$?" -eq 0 ]
 then
   echo "----- Tomcat shutdown successfull ----"
@@ -47,7 +46,7 @@ then
     if [ "$?" -eq 0 ]
     then
       echo "----- New war file successfully copied to tomcat/webapps -----"
-      sudo -E sh "$tomcat_location"/startup.sh && sleep 5
+      sudo service tomcat8 start && sleep 5
     else
       echo "----- Copying of war file failed -----"
       echo "$?"
