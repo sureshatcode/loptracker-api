@@ -1,4 +1,4 @@
-node('ec2slaves') {
+node() {
  properties([pipelineTriggers([
   [$class: 'GitHubPushTrigger']
  ])])
