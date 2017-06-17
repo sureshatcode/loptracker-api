@@ -15,5 +15,5 @@ cache:
   directories:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
- notifications:
-    slack: sureshatcode:61gIfHI2bZVtZw3vwyaD50pg
+notifications:
+  slack: sureshatcode:61gIfHI2bZVtZw3vwyaD50pg
