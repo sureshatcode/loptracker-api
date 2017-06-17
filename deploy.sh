@@ -1,7 +1,8 @@
 #!/bin/bash
 source "$1"
 base_dir=$(pwd)
-tomcat_app_location="/var/lib/tomcat8/webapps"
+tomcat_location="/opt/tomcat9/"
+tomcat_app_location="/opt/tomcat9/webapps"
 war_location="$base_dir//loptracker.war"
 time_stamp=$(date +%Y-%m-%d-%T)
 dir_name="$base_dir/$time_stamp-$file_name"
@@ -20,21 +21,9 @@ extractLopTrackerZipFile(){
   fi
 }
 
-# This function is used to extract loptracker.zip
-loptrackerExtraction(){
-extractLopTrackerZipFile
-if [ "$?" -eq 0 ]
-then
-  echo "==>> loptracker.zip extracted successfully"
-else
-  echo "==>> loptracker.zip extraction failed"
-  echo "$?"
-fi
-}
-
 # This function is used to deploy the loptracker.war
 deployLopTracker(){
-sudo service tomcat8 stop && sleep 5
+sudo sh "$tomcat_location"bin/shutdown.sh && sleep 5
 if [ "$?" -eq 0 ]
 then
   echo "----- Tomcat shutdown successfull ----"
@@ -46,7 +35,7 @@ then
     if [ "$?" -eq 0 ]
     then
       echo "----- New war file successfully copied to tomcat/webapps -----"
-      sudo service tomcat8 start && sleep 5
+      sudo sh "$tomcat_location"bin/startup.sh && sleep 5
     else
       echo "----- Copying of war file failed -----"
       echo "$?"
@@ -62,7 +51,7 @@ fi
 }
 
 # Executing the functions
-loptrackerExtraction
+extractLopTrackerZipFile
 if [ "$?" -eq 0 ]
 then
   echo " ==>> loptrackerExtraction function successfull"
