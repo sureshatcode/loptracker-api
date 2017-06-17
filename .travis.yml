@@ -4,8 +4,6 @@ sudo: enabled
 dist: trusty
 before_install:
  - chmod +x gradlew
-notifications:
-   slack: loptracker:EVAw1XP4Iul0F7Np7ffmTh7B
 script:
   - ./gradlew check
   - ./gradlew assemble
@@ -17,3 +15,5 @@ cache:
   directories:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
+notifications:
+   slack: loptracker:EVAw1XP4Iul0F7Np7ffmTh7B
