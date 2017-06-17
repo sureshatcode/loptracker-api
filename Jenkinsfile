@@ -1,4 +1,4 @@
-node() {
+node {
  properties([pipelineTriggers([
   [$class: 'GitHubPushTrigger']
  ])])
@@ -6,5 +6,6 @@ node() {
  checkout scm
  stage 'Build'
  sh './gradlew clean'
+ sh './gradlew build'
  sh './gradlew zip'
 }
